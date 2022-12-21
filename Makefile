@@ -40,6 +40,7 @@ SRC		=	$(DIR)camera.cpp				\
 			$(DIR)plane.cpp					\
 			$(DIR)vector3.cpp				\
 			$(DIR)light.cpp					\
+			$(DIR)chrono.cpp				\
 			$(DIR)material.cpp				\
 			$(DIR)point_light.cpp
 

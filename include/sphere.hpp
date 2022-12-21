@@ -12,7 +12,7 @@ namespace Raytracing
             Sphere(Vector3 v = Vector3());
             Sphere();
             Vector3 get_color_at(const Vector3 &position) override;
-            
+
             Vector3 normal(const Vector3 &position) override;
         private:
             Vector3 get_uv_at(const Vector3 &position);

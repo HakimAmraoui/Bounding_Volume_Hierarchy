@@ -1,7 +1,7 @@
 #include "scene.hpp"
 #include "omp.h"
 #define epsilon .005
-#define bounceLimit 5
+#define bounceLimit 10
 namespace Raytracing{
     Scene::Scene(Camera c){
         this->camera = c;
