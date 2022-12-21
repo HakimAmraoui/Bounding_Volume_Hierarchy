@@ -2,27 +2,30 @@
 
 namespace Raytracing{
 
-    Vector3 Point_light::get_direction(Vector3 const &position) const{
-        Vector3 pos = this->origin - position;
-        pos.normalize();
-        return pos;
-    }
+    /*
+	 * Constructeur de classe
+	 */
 
-    Point_light::Point_light(Vector3 origin){
-        this->origin = origin;
-        this->color = Vector3(1.0,1.0,1.0);
-    }
 
-    Point_light::Point_light(){
-        this->origin = Vector3();
-        this->color = Vector3(1.0,1.0,1.0);
-    }
+	PointLight::PointLight(const Vec3f &color, const Vec3f &position, const		float intensity)
+	{
+		_color = color;
+		_position = position;
+		_intensity = intensity;
+	}
 
-    float Point_light::get_minimum_dist(Vector3 const & p) const{
-        return (p - this->origin).length();
-    }
-    Vector3 Point_light::get_color() const{
-        return this->color;
-    }
+	/*
+	 * Fonction permettant de r�cuperer l'intensit� de la lumi�re en fonction de
+	 * la distance entre un point et le centre de la lumi�re
+	 */
 
+	float PointLight::getIntensity(const float length)
+	{
+		float intensity	= (_intensity) /M_PI * 4.f* (length * length);
+
+		intensity = glm::clamp(intensity,0.f,1.0f);
+
+		return intensity;
+
+	}
 }

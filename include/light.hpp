@@ -1,15 +1,27 @@
 #ifndef RAYTRACING_LIGHT_H
 #define RAYTRACING_LIGHT_H
-#include "vector3.hpp"
+
+#include "defines.hpp"
 namespace Raytracing{
-    class Light{
-        public:
-            Vector3 color;
-            virtual Vector3 get_direction(Vector3 const &p) const;
-            virtual float get_minimum_dist(Vector3 const &p) const;
-            virtual Vector3 get_color() const;
-            Light();
-    };
+
+
+    class Light
+	{
+	public:
+		Light() = default;
+		Light(const Vec3f &color, const Vec3f &position);
+
+		Vec3f& getPosition();
+		Vec3f& getColor();
+
+		//Fonction virtuelle implémenté par les classes héritant de celle ci
+		virtual float getIntensity(const float length);
+
+		protected:
+			Vec3f _color;
+			Vec3f _position;
+
+	};
 }
 
 #endif

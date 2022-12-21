@@ -2,50 +2,78 @@
 
 
 namespace Raytracing{
-    float Sphere::intersect(const Ray& r){
-        //a est égal à 1, c n'a besoin d'être calculé qu'une fois.
-        float b = 2*(
-                    r.origin.x * r.direction.x +
-                    r.origin.y * r.direction.y +
-                    r.origin.z * r.direction.z -
-                    this->origin.x * r.direction.x -
-                    this->origin.y * r.direction.y -
-                    this->origin.z * r.direction.z);
+    /*
+	 * Constructeur de classe
+	 */
 
-        float delta= b*b-4*(
-                r.origin.x*r.origin.x - 2*this->origin.x * r.origin.x + this->origin.x*this->origin.x +
-                r.origin.y*r.origin.y - 2*this->origin.y * r.origin.y + this->origin.y*this->origin.y + 
-                r.origin.z*r.origin.z - 2*this->origin.z * r.origin.z + this->origin.z*this->origin.z -
-                this->radius * this->radius);
-            if (delta >0){
-                float sqrtDelta = std::sqrt(delta);
-                float sol1 = (-b+sqrtDelta)/2;
-                float sol2 = (-b-sqrtDelta)/2;
-                if ((sol1 < sol2 || sol2 < 0) && sol1 > 0)
-                    return sol1;
-                if (sol2 > 0)
-                    return sol2;
-            }
-            return 0;
-    }
-    Sphere::Sphere(Vector3 origin){
-        this->origin = origin;
-    }
-    Sphere::Sphere(){
-        this->origin = Vector3();
-    }
 
-    Vector3 Sphere::normal(const Vector3 &position){
-        Vector3 toRet = (position - this->origin);
-        toRet.normalize();
-        return toRet;
-    }
+	Sphere::Sphere(const Vec3f &center, const float radius,
+				   const float reflectionAmount, const float refractionAmount,
+				   const float refractionIndex, const float rugosity,
+				   const Vec3f &f0)
+		: _center(center), _radius(radius)
+	{
+		_reflectionAmount = reflectionAmount;
+		_refractionIndex = refractionIndex;
+		_refractionAmount = refractionAmount;
+		_rugosity = rugosity;
+		_f0 = f0;
+	}
 
-    Vector3 Sphere::get_color_at(const Vector3 &position){
-        return this->material.get_color_at(position, get_uv_at(position));
-    }
+	/*
+	 * Fonction d'intersection. Dans le cas de la sph�re , on utilise la repr�sentation
+	 * param�trique de celle-ci pour trouver l'intersection entre le rayon et
+	 * la sph�re
+	 */
 
-    Vector3 Sphere::get_uv_at(const Vector3 & position){
-        return Vector3(0,0,0);
-    }
+
+	std::vector<Intersection> Sphere::intersect(const Ray &ray)
+	{
+		std::vector<Intersection> intersections;
+		float a = dot(ray.getDirection(), ray.getDirection());
+
+		float b = 2 * dot((ray.getOrigin() - _center), ray.getDirection());
+
+		float c = dot((ray.getOrigin() - _center), (ray.getOrigin() - _center))
+				  - _radius * _radius;
+
+		float delta = b * b - (4 * a * c);
+		if (delta >= 0)
+		{
+			float t = (-b - sqrt(delta)) / 2 * a;
+			if (t > 0)									//l'origine du rayon est devant la sph�re et l'intersecte
+			{
+				float t2 = (-b + sqrt(delta)) / 2 * a;
+				Vec3f p = ray.getOrigin() + ray.getDirection() * t;
+				Vec3f p2 = ray.getOrigin() + ray.getDirection() * t2;
+				Vec3f normale1 = glm::normalize(p - _center);
+				Intersection intersect1(t, p+ normale1*0.0001f , normale1,this);
+
+				if (intersect1._distance >= 10e-4)
+
+					intersections.push_back(intersect1);
+				Vec3f normale2= glm::normalize(p2 - _center);
+
+				Intersection intersect2(t2, p2 + normale2 * 0.0001f,normale2,
+										this);
+
+				if (intersect2._distance >= 10e-4)
+					intersections.push_back(intersect2);
+			}
+			else										 // l'origine du rayon est � l'int�rieur la sph�re et l'intersecte
+			{
+				float t2 = (-b + sqrt(delta)) / 2 * a;
+				Vec3f p2 = ray.getOrigin() + ray.getDirection() * t2;
+				Vec3f normale2 = glm::normalize(p2 - _center);
+
+				Intersection intersect1(t2, p2 + normale2 * 0.001f, normale2,
+										this);
+
+				if (intersect1._distance >= 10e-4)
+					intersections.push_back(intersect1);
+			}
+		}
+
+		return intersections;
+	}
 }

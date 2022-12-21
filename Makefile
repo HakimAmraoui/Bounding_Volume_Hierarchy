@@ -30,19 +30,26 @@ INCLUDE		=	./include/
 
 DIR		=	./src/
 
-SRC		=	$(DIR)camera.cpp				\
-			$(DIR)image.cpp					\
-			$(DIR)main.cpp					\
-			$(DIR)ray.cpp					\
-			$(DIR)solid.cpp					\
-			$(DIR)scene.cpp					\
-			$(DIR)sphere.cpp				\
-			$(DIR)plane.cpp					\
-			$(DIR)vector3.cpp				\
-			$(DIR)light.cpp					\
+SRC		=	$(INCLUDE)camera.hpp			\
 			$(DIR)chrono.cpp				\
-			$(DIR)material.cpp				\
-			$(DIR)point_light.cpp
+			$(INCLUDE)defines.hpp			\
+			$(INCLUDE)image.hpp				\
+			$(DIR)implicitSphere.cpp		\
+			$(DIR)light.cpp					\
+			$(DIR)main.cpp					\
+			$(DIR)plan.cpp					\
+			$(DIR)point_light.cpp			\
+			$(DIR)ray.cpp					\
+			$(DIR)sphere.cpp				\
+			$(DIR)triangleMesh.cpp			\
+			$(DIR)3D/aMaterial.cpp			\
+			$(DIR)3D/aObject3D.cpp			\
+			$(DIR)3D/intersection.cpp
+
+# $(DIR)scene.cpp					\
+# $(DIR)material.cpp				\
+# $(DIR)solid.cpp					\
+# $(DIR)vector3.cpp				\
 
 # CFLAGS		=		-I$(INCLUDE) --std=c++17 -lgmpxx -lgmp -Xpreprocessor -fopenmp -O3
 # #LDFLAGS += -lomp

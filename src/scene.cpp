@@ -5,14 +5,14 @@
 namespace Raytracing{
     Scene::Scene(Camera c){
         this->camera = c;
-        this->lights = vector<std::unique_ptr<Light>>(0); 
+        this->lights = vector<std::unique_ptr<Light>>(0);
         this->solids = vector<std::unique_ptr<Solid>>(0);
     }
-    
+
 
     RayHit Scene::castRay(Ray const &ray){
         RayHit toRet;
-        
+
         toRet.solidHitIndex = -1;
         toRet.distanceFromOrigin = 1./0.;
         for (int solidIdx = 0; solidIdx < solids.size(); solidIdx += 1){

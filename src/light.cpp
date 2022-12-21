@@ -1,15 +1,36 @@
 #include "light.hpp"
 namespace Raytracing{
-    Light::Light(){
-        color= Vector3(1.0,1.0,1.0);
-    }
-    Vector3 Light::get_direction(Vector3 const &position) const{
-        return Vector3();
-    }
-    float Light::get_minimum_dist(Vector3 const & p) const{
-        return 100000;
-    }
-    Vector3 Light::get_color() const{
-        return this->color;
-    }
+
+	/*
+	 * Constructeur de classe
+	 */
+
+	Light::Light(const Vec3f &color, const Vec3f &position)
+		: _color(color), _position(position)
+	{
+	}
+
+	/*  
+	 * Fonction permettant de r�cuperer l'intensit� de la lumi�re
+	 */
+
+	float Light::getIntensity(const float length)
+	{
+		return (1.0f);
+	}
+
+	/* 
+	 * Getters des variables de la classe
+	 */
+
+	
+	Vec3f &Light::getColor()
+	{
+		return _color;
+	}
+
+	Vec3f &Light::getPosition()
+	{
+		return _position;
+	}
 }

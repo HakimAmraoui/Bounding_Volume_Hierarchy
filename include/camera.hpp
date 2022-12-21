@@ -1,29 +1,32 @@
 #ifndef RAYTRACING_CAMERA_H
 #define RAYTRACING_CAMERA_H
-#include <cmath>
-#include "vector3.hpp"
+
+#include "defines.hpp"
 #include "ray.hpp"
-namespace Raytracing{
-    class Camera{
-        public:
-            Vector3 origin;
-            Vector3 target;
-            Vector3 up;
-            float apertureSize;
-            float focalScreenSize;
 
+namespace Raytracing
+{
 
+	/*
+	 * Classe repr�sentant la cam�ra de la sc�ne
+	 */
 
-            // float alpha;
-            // float beta;
-            // float zMin;
-            float focalLength;
+	class Camera
+	{
+	public:
+		Camera();
+		Camera(uint width, uint height, float focale);
 
-            Camera(Vector3 center = Vector3(), Vector3 target = Vector3(0,1,0));
+		Ray generateRay(Vec2f pixelPos);
+		Vec3f getPosition();
 
-            Ray pixelToRay(int pixelX, int pixelY, int width, int height) const;
-            Ray pixelToRayDefocus(int pixelX, int pixelY, int width, int height) const;
-    };
+	private:
+		Vec3f _posCam = VEC3F_ZERO;
+		Vec3f _direction = Vec3f(0.0f, 0.0f, 1.0f);
+		float _ratio;
+		float _focale;
+		Vec3f _up = Vec3f(0.0f, 1.0f, 0.0f);
+
+	};
 }
-
 #endif

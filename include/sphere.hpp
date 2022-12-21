@@ -1,23 +1,33 @@
 #ifndef RAYTRACING_SPHERE_H
 #define RAYTRACING_SPHERE_H
-#include "vector3.hpp"
-#include "solid.hpp"
-#include <cmath>
+
+#include "3D/aObject3D.hpp"
+#include <vector>
 namespace Raytracing
 {
-    class Sphere : public Solid{
-        public:
-            float radius = 1;
-            float intersect(const Ray& r) override ;
-            Sphere(Vector3 v = Vector3());
-            Sphere();
-            Vector3 get_color_at(const Vector3 &position) override;
+    	
+	/*
+	 * Classe repr�sentant une sph�re 3D.
+	 * H�rite de AObject3D
+	 */
 
-            Vector3 normal(const Vector3 &position) override;
-        private:
-            Vector3 get_uv_at(const Vector3 &position);
 
-    };
+	class Sphere : public AObject3D
+	{
+	public:
+		Sphere() = default;
+
+		Sphere(const Vec3f &center, const float radius,
+			   const float reflectionAmount, const float refractionAmount,
+			   const float refractionIndex, const float rugosity,
+			   const Vec3f &f0);
+
+		std::vector<Intersection> intersect(const Ray &ray);
+
+	private:
+		Vec3f _center = VEC3F_ZERO;
+		float _radius = 1.f;
+	};
 } // namespace Raytracing
 
 #endif

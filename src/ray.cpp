@@ -1,7 +1,16 @@
 #include "ray.hpp"
 namespace Raytracing{
-    Ray::Ray(const Vector3& o, const Vector3& d){
-        this->origin = o;
-        this->direction = d;
-    }
+    /*
+	 * Getters des param�tres de la classe
+	 */
+
+	Vec3f Ray::getOrigin() const
+	{
+		return _origin;
+	}
+
+	Vec3f Ray::getDirection() const
+	{
+		return _direction;
+	}
 }
