@@ -1,4 +1,4 @@
-#include "3D/intersection.hpp"
+#include "../../include/3D/intersection.hpp"
 namespace Raytracing
 {
     /*

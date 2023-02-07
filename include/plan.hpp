@@ -6,10 +6,8 @@
 #include <vector>
 namespace Raytracing{
     /*
-	 * Classe  repr�sentant un plan 3D.
-	 * H�rite de AObject3D
-	 * Le plan est r�pr�sent� � l'aide de sa normale et d'un point appartenant
-	 * � celui ci.
+	 * Representation of a 3D plan : AObject3D
+	 * A plan is represented by its normal and points belonging to it
 	 */
 
 
@@ -25,8 +23,8 @@ namespace Raytracing{
 		std::vector<Intersection> intersect(const Ray &ray);
 
 	private:
-		Vec3f _p1;				 //Point appartenant au plan
-		Vec3f _normale;          //Normale du plan
+		Vec3f _p1;				 // Points belonging to the plan
+		Vec3f _normale;          // Plan's normale
 	};
 }
 

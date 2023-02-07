@@ -18,6 +18,10 @@ namespace Raytracing
 	const Vec3f VEC3F_ZERO = Vec3f(0.f, 0.f, 0.f);
 	const Vec3f VEC3F_ONE = Vec3f(1.0f,1.0f,1.0f);
 
+	Vec3f operator*(const Vec3f &v, const float &l)  {
+        return Vec3f(v.x * l, v.y * l, v.z * l);
+    }
+
 }
 
 #endif

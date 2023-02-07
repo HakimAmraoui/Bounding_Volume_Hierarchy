@@ -3,48 +3,31 @@ CXX = g++
 # # Les options du compilateur
 CXXFLAGS = --std=c++17
 
-#
-#
-#
-# main: main.cpp vector3.o ray.o solid.o image.o camera.o scene.o sphere.o
-#
-# vector3.o: vector3.cpp vector3.hpp
-# image.o: image.cpp image.hpp vector3.hpp
-# ray.o: ray.cpp ray.hpp vector3.hpp
-# camera.o: camera.cpp camera.hpp vector3.hpp ray.hpp
-#
-# solid.o: solid.cpp solid.hpp vector3.hpp ray.hpp material.hpp
-# sphere.o: sphere.cpp solid.hpp vector3.hpp ray.hpp material.hpp
-#
-# scene.o: scene.cpp scene.hpp vector3.hpp image.hpp camera.hpp ray.hpp solid.hpp sphere.hpp
-#
-#
-# clean:
-# 	rm *.io ./path/file
-# all:
-# 	$(main)
-
 ########################################
 
 INCLUDE		=	./include/
 
 DIR		=	./src/
 
-SRC		=	$(INCLUDE)camera.hpp			\
-			$(DIR)chrono.cpp				\
-			$(INCLUDE)defines.hpp			\
-			$(INCLUDE)image.hpp				\
-			$(DIR)implicitSphere.cpp		\
-			$(DIR)light.cpp					\
-			$(DIR)main.cpp					\
-			$(DIR)plan.cpp					\
-			$(DIR)point_light.cpp			\
-			$(DIR)ray.cpp					\
-			$(DIR)sphere.cpp				\
-			$(DIR)triangleMesh.cpp			\
-			$(DIR)3D/aMaterial.cpp			\
-			$(DIR)3D/aObject3D.cpp			\
-			$(DIR)3D/intersection.cpp
+SRC		=	$(INCLUDE)3D/aMaterial.hpp						\
+			$(INCLUDE)defines.hpp							\
+			$(INCLUDE)material/flatColorMaterial.hpp		\
+			$(INCLUDE)image.hpp								\
+			$(DIR)3D/aObject3D.cpp							\
+			$(DIR)3D/intersection.cpp						\
+			$(DIR)camera.cpp								\
+			$(DIR)chrono.cpp								\
+			$(DIR)implicitSphere.cpp						\
+			$(DIR)light/light.cpp							\
+			$(DIR)light/point_light.cpp						\
+			$(DIR)main.cpp									\
+			$(DIR)material/brdf.cpp							\
+			$(DIR)material/lightMaterial.cpp				\
+			$(DIR)plan.cpp									\
+			$(DIR)ray.cpp									\
+			$(DIR)scene.cpp									\
+			$(DIR)sphere.cpp								\
+			$(DIR)triangleMesh.cpp
 
 # $(DIR)scene.cpp					\
 # $(DIR)material.cpp				\

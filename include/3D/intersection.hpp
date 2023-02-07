@@ -7,7 +7,6 @@
 
 namespace Raytracing
 {
-	class AObject3D;
 
 	class AObject3D;
 

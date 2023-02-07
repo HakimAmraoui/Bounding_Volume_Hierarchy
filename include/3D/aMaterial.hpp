@@ -1,5 +1,5 @@
-#ifndef RAYTRACING_
-#define RAYTRACING_
+#ifndef RAYTRACING_AMATERIAL_H
+#define RAYTRACING_AMATERIAL_H
 
 #include "intersection.hpp"
 #include "../ray.hpp"

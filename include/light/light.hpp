@@ -1,7 +1,7 @@
 #ifndef RAYTRACING_LIGHT_H
 #define RAYTRACING_LIGHT_H
 
-#include "defines.hpp"
+#include "../defines.hpp"
 namespace Raytracing{
 
 

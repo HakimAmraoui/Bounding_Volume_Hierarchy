@@ -1,9 +1,9 @@
-#include "point_light.hpp"
+#include "light/point_light.hpp"
 
 namespace Raytracing{
 
     /*
-	 * Constructeur de classe
+	 * Class constructor
 	 */
 
 
@@ -15,8 +15,8 @@ namespace Raytracing{
 	}
 
 	/*
-	 * Fonction permettant de r�cuperer l'intensit� de la lumi�re en fonction de
-	 * la distance entre un point et le centre de la lumi�re
+	 * Function to retrieve the intensity of the light
+	  * as a function of the distance between a point and the center of the light
 	 */
 
 	float PointLight::getIntensity(const float length)

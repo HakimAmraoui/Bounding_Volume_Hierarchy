@@ -1,4 +1,4 @@
-#include "light.hpp"
+#include "light/light.hpp"
 namespace Raytracing{
 
 	/*
